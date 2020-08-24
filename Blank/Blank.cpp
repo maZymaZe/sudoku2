@@ -12,6 +12,7 @@
 #include "Game/Game.h"
 #include "Screen/GameOverScreen.h"
 #include "Screen/MenuScreen.h"
+#include "Sudoku/generator.h"
 
 using namespace Sudoku;
 
@@ -30,28 +31,8 @@ sf::Mouse mouse;
 int time_as_sec;
 
 Blank::Blank(int difficulty) {
-    std::experimental::reseed(time(NULL));
-    Game::map_id =
-        std::experimental::randint(0, Game::map_id_limit[difficulty]);
-    std::string sudoku_address =
-        "Sudoku/" + std::to_string(difficulty) + std::to_string(Game::map_id);
-    std::ifstream ifp(sudoku_address);
-    char t = 0;
-    for (int j = 1; j < 10; j++) {
-        for (int i = 1; i < 10; i++) {
-            while (!(t >= '0' && t <= '9') && ifp.good())
-                ifp >> t;
-            if (t == '0') {
-                mut_map[i][j] = 1;
-                now_map[i][j] = 0;
-            } else {
-                mut_map[i][j] = 0;
-                now_map[i][j] = t - '0';
-            }
-            t = 0;
-        }
-    }
-    ifp.close();
+    generate(difficulty,mut_map,now_map);
+    reset();
     target_x = 0;
     target_y = 0;
 
@@ -66,9 +47,7 @@ Blank::Blank(int difficulty) {
     clock.restart();
     time_as_sec = clock.getElapsedTime().asSeconds();
     font_.loadFromFile("Resource/font01.ttf");
-    std::string texttmp("Sudoku:" + std::to_string(Game::difficulty) +
-                        std::to_string(Game::map_id) + "\n" +
-                        "Time:" + std::to_string(time_as_sec / 60) + ":" +
+    std::string texttmp("\nTime:" + std::to_string(time_as_sec / 60) + ":" +
                         std::to_string(time_as_sec % 60));
 
     text_.setString(texttmp);
@@ -95,7 +74,7 @@ void Blank::handleInput(sf::RenderWindow& window) {
                 return;
             }
             if (mouse_y >= 270 && mouse_y <= 330) {
-                if (check())
+                if (check(now_map))
                     Game::Screen = std::make_shared<GameOverScreen>();
             }
         }
@@ -188,9 +167,7 @@ void Blank::render(sf::RenderWindow& window) {
         }
     }
     time_as_sec = clock.getElapsedTime().asSeconds();
-    std::string texttmp("Sudoku:" + std::to_string(Game::difficulty) +
-                        std::to_string(Game::map_id) + "\n" +
-                        "Time:" + std::to_string(time_as_sec / 60) + ":" +
+    std::string texttmp("\nTime:" + std::to_string(time_as_sec / 60) + ":" +
                         std::to_string(time_as_sec % 60));
 
     text_.setString(texttmp);
@@ -206,42 +183,4 @@ void Blank::reset() {
     }
     target_x = target_y = 0;
     clock.restart();
-}
-bool Blank::check() {
-    int helper[10] = {0};
-    for (int i = 1; i <= 9; i++) {
-        memset(helper, 0, sizeof(helper));
-        for (int j = 1; j <= 9; j++) {
-            if (!now_map[i][j])
-                return false;
-            if (helper[now_map[i][j]])
-                return false;
-            helper[now_map[i][j]]++;
-        }
-    }
-    for (int i = 1; i <= 9; i++) {
-        memset(helper, 0, sizeof(helper));
-        for (int j = 1; j <= 9; j++) {
-            if (!now_map[j][i])
-                return false;
-            if (helper[now_map[j][i]])
-                return false;
-            helper[now_map[j][i]]++;
-        }
-    }
-    for (int i = 1; i <= 3; i++) {
-        for (int j = 1; j <= 3; j++) {
-            memset(helper, 0, sizeof(helper));
-            for (int p = 3 * i - 2; p <= 3 * i; p++) {
-                for (int q = 3 * j - 2; q <= 3 * j; q++) {
-                    if (!now_map[p][q])
-                        return false;
-                    if (helper[now_map[p][q]])
-                        return false;
-                    helper[now_map[p][q]]++;
-                }
-            }
-        }
-    }
-    return true;
 }

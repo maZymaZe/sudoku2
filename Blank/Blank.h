@@ -1,5 +1,5 @@
-#ifndef SNAKE_H
-#define SNAKE_H
+#ifndef BLANK_H
+#define BLANK_H
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -23,7 +23,6 @@ class Blank {
     int target_y;
     void reset();
     sf::Clock clock;
-    bool check();
     sf::Font font_;
     sf::Text text_;
 

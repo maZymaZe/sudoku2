@@ -15,7 +15,7 @@ EXECUTABLE := main    # 可执行文件名
 LIBDIR:=C:/SFML2.5/lib              # 静态库目录
 LIBS :=  sfml-audio sfml-graphics  sfml-main sfml-network sfml-system  sfml-window  # 静态库文件
 INCLUDES:=. C:/SFML2.5/include          # 头文件目
-SRCDIR:=./src ./Blank ./Screen ./Game         # 除了当前目录外，其他的源代码文件目录
+SRCDIR:=./src ./Sudoku  ./Blank ./Screen ./Game         # 除了当前目录外，其他的源代码文件目录
 #
 # # Now alter any implicit rules' variables if you like, e.g.:
 

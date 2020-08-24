@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
-#include <random>
 
 #include "Game/Game.h"
 #include "Screen/GameOverScreen.h"

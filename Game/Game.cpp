@@ -8,8 +8,6 @@
 using namespace Sudoku;
 const sf::Time Game::TimePerFrame = sf::seconds(1.f / 10.f);
 int Game::difficulty = 0;
-int Game::map_id= 0;
-const int Game::map_id_limit[4]={0,0,0,0};
 std::shared_ptr<Screen> Game::Screen = std::make_shared<MenuScreen>();
 
 Game::Game() : window_(sf::VideoMode(Game::Width, Game::Height), "Sutoku") {

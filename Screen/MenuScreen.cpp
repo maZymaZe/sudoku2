@@ -14,7 +14,7 @@ sf::Texture menu;
 MenuScreen::MenuScreen() {
     menu.loadFromFile("Resource/menu.png");
     Menu.setTexture(menu);
-    Menu.setPosition({0,0});
+    Menu.setPosition({0, 0});
 }
 
 void MenuScreen::handleInput(sf::RenderWindow& window) {
@@ -25,13 +25,13 @@ void MenuScreen::handleInput(sf::RenderWindow& window) {
         bool flag = false;
         if (mouse_x >= 60 && mouse_x <= 460) {
             if (mouse_y >= 240 && mouse_y <= 340)
-                flag = true, Game::difficulty = 0;
+                flag = true, Game::difficulty = 44;
             if (mouse_y >= 350 && mouse_y <= 450)
-                flag = true, Game::difficulty = 1;
+                flag = true, Game::difficulty = 37;
             if (mouse_y >= 460 && mouse_y <= 560)
-                flag = true, Game::difficulty = 2;
+                flag = true, Game::difficulty = 30;
             if (mouse_y >= 570 && mouse_y <= 670)
-                flag = true, Game::difficulty = 3;
+                flag = true, Game::difficulty = 24;
             if (flag)
                 Game::Screen = std::make_shared<GameScreen>();
         }
