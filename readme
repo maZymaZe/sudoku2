@@ -1,0 +1,19 @@
+if you want to compile this on your computer,check the address of sfml
+    setup by running the setup.bat
+    (which includes " del /s "*.o" " pay attention!!)
+
+or you can just
+play by running the main.exe
+
+author:Maze
+2020/8/14
+
+
+1.if you can see the menu but crash when clicking the button,
+that is something wrong with the "ifstream" in my code.
+
+(1 is solved,please run the main-fopen.exe)(i use fopen here)
+
+2. if it says libgcc_s_seh-1.dll is missing or 
+unable to start correctly 0xc000007b
+so sorry, i havn't know the reason and solution yet.
