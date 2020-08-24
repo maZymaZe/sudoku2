@@ -9,11 +9,9 @@ author:Maze
 2020/8/14
 
 
-1.if you can see the menu but crash when clicking the button,
-that is something wrong with the "ifstream" in my code.
-
-(1 is solved,please run the main-fopen.exe)(i use fopen here)
-
-2. if it says libgcc_s_seh-1.dll is missing or 
+1. if it says libgcc_s_seh-1.dll is missing or 
 unable to start correctly 0xc000007b
 so sorry, i havn't know the reason and solution yet.
+
+2.now i generate the sudoku automatically.
+(update on 2020/8/24)
