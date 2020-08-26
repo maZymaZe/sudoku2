@@ -160,7 +160,7 @@ void fill(int filled_map[10][10]) {
     std::experimental::reseed(time(NULL));
     for (int i = 1; i <= 9; i++) {
         for (int j = 1; j <= 9; j++) {
-            if (randint(1, 81) < 30) {
+            if (randint(1, 81) < 16) {
                 filled_map[i][j] = randint(1, 9);
             } else
                 filled_map[i][j] = 0;

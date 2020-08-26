@@ -25,13 +25,13 @@ void MenuScreen::handleInput(sf::RenderWindow& window) {
         bool flag = false;
         if (mouse_x >= 60 && mouse_x <= 460) {
             if (mouse_y >= 240 && mouse_y <= 340)
-                flag = true, Game::difficulty = 44;
+                flag = true, Game::difficulty = 40;
             if (mouse_y >= 350 && mouse_y <= 450)
-                flag = true, Game::difficulty = 37;
+                flag = true, Game::difficulty = 36;
             if (mouse_y >= 460 && mouse_y <= 560)
-                flag = true, Game::difficulty = 30;
+                flag = true, Game::difficulty = 32;
             if (mouse_y >= 570 && mouse_y <= 670)
-                flag = true, Game::difficulty = 24;
+                flag = true, Game::difficulty = 28;
             if (flag)
                 Game::Screen = std::make_shared<GameScreen>();
         }
